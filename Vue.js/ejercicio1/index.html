@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendiendo VueJs</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Hola desde VueJS</h1>
+        <!-- Interpolación con la directiva v-text -->
+        <!-- v-show manipula el display si es falso o verdadero. Por ejemplo: display: none -->
+        <h2 v-show="message.length > 2">Esta variable se muestra con una directiva: <span v-text="message"></span></h2>
+        <!-- Interpolación con sintaxis Mustache {{ }} -->
+        <!-- v-if crea o elimina el elemento complentamente -->
+        <h2 v-if="message.length > 2">Así se hace la interpolación de una variable: {{ message }}</h2>
+        <h2 v-else>Por favor escribe tu nombre!</h2>
+        <!-- v-model: sincroniza el input con la variable en ambas direcciones.
+        Escribes en el input → la variable cambia.
+        Cambias la variable por código → el input cambia. -->
+        <input type="text" v-model="message">
+        <h2>Lista de tareas</h2>
+        <ul>
+            <li v-text="tareas[0]"></li>
+            <li v-text="tareas[1]"></li>
+            <li>//////////////////////////////</li>
+            <li v-for="tarea in tareas" v-text="tarea"></li>
+            <li v-for="tarea in tareas">
+                <span v-text="tarea.title"></span>
+                <small v-if="tarea.completed">Completa</small>
+                <small v-else>Incompleta</small>
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        //Se crea una nueva instancia deVue para interactuar con VueJS
+        //La instancia solo tiene acceso al elemento o etiqueta que tenga el id
+        var app = new Vue({
+            //el=elemento
+            el: '#app',
+            data: {
+                message: "Aprendible",
+                tareas: [
+                    { title: "Aprender Laravel", completed: true },
+                    { title: "Aprender VueJs", completed: true },
+                    { title: "Aprender PHP", completed: false },
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
